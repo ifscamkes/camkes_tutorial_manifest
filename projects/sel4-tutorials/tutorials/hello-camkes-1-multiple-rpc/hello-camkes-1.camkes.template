@@ -1,0 +1,23 @@
+import <std_connector.camkes>;
+
+import "components/RWFM_MONITOR/RWFM_MONITOR.camkes";
+import "components/Client1/Client1.camkes";
+import "components/Client2/Client2.camkes";
+import "components/Echo/Echo.camkes";
+
+assembly {
+    composition {
+        component RWFM_MONITOR rwfm_monitor;
+        component Client1 client1;
+        component Client2 client2;
+        component Echo echo;
+
+        connection seL4RPC h1(from client1.h2, to echo.h3);
+        connection seL4RPC h4(from echo.h5, to client2.h6);
+
+        connection seL4RPCCall h7(from client1.h8, to rwfm_monitor.h9);
+        connection seL4RPCCall h10(from echo.h11, to rwfm_monitor.h12);
+        connection seL4RPCCall h13(from client2.h14, to rwfm_monitor.h15);
+   }
+}
+

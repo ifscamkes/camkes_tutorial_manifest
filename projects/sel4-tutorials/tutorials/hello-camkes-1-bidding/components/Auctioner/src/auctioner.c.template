@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <camkes.h>
+
+#define Num_of_bidders 3
+
+int bids[Num_of_bidders], size = 0;
+char bidders[Num_of_bidders][26];
+
+void store_bid(int bid_amount, const char* bidder)
+{
+  strcpy(bidders[size], bidder);
+  bids[size++]=bid_amount;
+  if(size == Num_of_bidders)
+  {
+    printf("Proposed bids:\n");
+    int maximum_bid = bids[0];
+    int loc = 0;
+    for(int i=0;i<Num_of_bidders;i++)
+    {
+      printf("%d ", bids[i]);
+      if(maximum_bid < bids[i])
+      {
+	maximum_bid = bids[i];
+	loc = i;
+      }
+    }
+    printf("\n");
+    h29_turn_off_rwfm();
+    h5_declare_result(bidders[loc]);
+    h11_declare_result(bidders[loc]);
+    h17_declare_result(bidders[loc]);
+  }
+}
+
+void h3_make_bid(int bid_amount, const char* bidder)
+{
+  store_bid(bid_amount, bidder);
+}
+
+void h9_make_bid(int bid_amount, const char* bidder)
+{
+  store_bid(bid_amount, bidder);
+}
+
+void h15_make_bid(int bid_amount, const char* bidder)
+{
+  store_bid(bid_amount, bidder);
+}
+ 

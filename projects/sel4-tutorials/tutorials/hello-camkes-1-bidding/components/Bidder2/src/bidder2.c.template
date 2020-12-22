@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <camkes.h>
+
+int winner_declare = 0;
+char bidder_won[26];
+
+int run(void)
+{
+   h8_make_bid(10, get_instance_name());
+   while(winner_declare == 0);
+
+   if(strcmp(bidder_won, get_instance_name()) == 0) printf("%s won.\n", get_instance_name());
+   else printf("%s lost.\n", get_instance_name());
+   return 0;
+}
+
+void h12_declare_result(const char* bidder)
+{
+  strcpy(bidder_won, bidder);
+  winner_declare = 1;
+}

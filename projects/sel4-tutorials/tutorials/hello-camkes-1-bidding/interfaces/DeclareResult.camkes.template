@@ -1,0 +1,3 @@
+procedure DeclareResult {
+    void declare_result(in string bidder);
+}

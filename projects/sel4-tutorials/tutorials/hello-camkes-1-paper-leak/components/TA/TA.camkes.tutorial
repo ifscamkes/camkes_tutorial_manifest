@@ -1,0 +1,11 @@
+import "../../interfaces/SendPaper.camkes";
+import "../../interfaces/TalktoStudent.camkes";
+import "../../interfaces/RWFM_P.camkes";
+
+component TA {
+    provides SendPaper h3;
+    uses TalktoStudent h5;
+
+    uses RWFM_P h11;
+}
+

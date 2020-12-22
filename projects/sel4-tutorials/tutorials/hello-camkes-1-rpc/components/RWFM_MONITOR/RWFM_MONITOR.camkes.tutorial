@@ -1,0 +1,8 @@
+import "../../interfaces/RWFM_P.camkes";
+
+component RWFM_MONITOR {
+    provides RWFM_P h9;
+    provides RWFM_P h12;
+    provides RWFM_P h15;
+}
+

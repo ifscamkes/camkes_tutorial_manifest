@@ -1,0 +1,9 @@
+import "../../interfaces/SendPaper.camkes";
+import "../../interfaces/RWFM_P.camkes";
+
+component Professor {
+    control;
+    uses SendPaper h2;
+    uses RWFM_P h8;
+}
+

@@ -1,0 +1,8 @@
+import "../../interfaces/HelloSimple1.camkes";
+import "../../interfaces/RWFM_P.camkes";
+
+component Client2 {
+    provides HelloSimple1 h6;
+    uses RWFM_P h14;
+}
+

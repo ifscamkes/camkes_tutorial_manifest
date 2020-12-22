@@ -1,0 +1,258 @@
+#include <stdio.h>
+#include <camkes.h>
+extern RWFM rwfm_monitor;
+extern int h8_parent_rwfm_sub_id, h11_parent_rwfm_sub_id, h14_parent_rwfm_sub_id;
+
+void print_sub_readers_writers(int rwfm_sub_id)
+{
+  for(int i=0;i<rwfm_monitor.num_subjects;i++)
+  {
+    if(rwfm_sub_id == rwfm_monitor.subjects[i].sub_id_index)
+    {
+       fflush(stdin);
+       /*- if print_labels -*/
+         printf("\nSubject_id: %d  Readers:%d  Writers:%d",rwfm_sub_id, rwfm_monitor.subjects[i].readers,rwfm_monitor.subjects[i].writers);
+       /*- endif -*/
+       fflush(stdin);
+       return ;
+    }
+  }
+}
+void print_obj_readers_writers(int rwfm_obj_id)
+{
+  for(int i=0;i<rwfm_monitor.num_objects;i++)
+  {
+    if(rwfm_obj_id == rwfm_monitor.objects[i].obj_id_index)
+    {
+       fflush(stdin);
+       /*- if print_labels -*/
+         printf("\nObject_id: %d  Readers:%d  Writers:%d\n",rwfm_obj_id, rwfm_monitor.objects[i].readers,rwfm_monitor.objects[i].writers);
+       /*- endif -*/
+       fflush(stdin);
+       return ;
+    }
+  }
+}
+
+bool is_user_in_set(int user_id_index, int set) {
+    int tmp = 1;
+    tmp <<= user_id_index;
+
+    return (set & tmp) ? true : false;
+}
+
+int set_union(int set1, int set2) {
+    return set1 | set2;
+}
+
+int set_intersection(int set1, int set2) {
+    return set1 & set2;
+}
+
+bool is_subset_of(int set1, int set2) {
+    int result = set1 & set2;
+    if(set1 == result)
+        return true;
+
+    return false;
+}
+
+bool is_superset_of(int set1, int set2) {
+    int result = set1 | set2;
+    if(set1 == result)
+        return true;
+
+    return false;
+}
+
+
+bool check_read_rule (int rwfm_sub_id, int rwfm_obj_id)
+{
+  int obj_readers;
+  fflush(stdin);
+  /*- if print_labels -*/
+    printf("Checking for READ rule");
+  /*- endif -*/
+  fflush(stdin);
+  print_sub_readers_writers(rwfm_sub_id);
+  print_obj_readers_writers(rwfm_obj_id);
+  for(int i=0;i<rwfm_monitor.num_objects;i++)
+  {
+    if(rwfm_obj_id == rwfm_monitor.objects[i].obj_id_index)
+    {
+       obj_readers = rwfm_monitor.objects[i].readers;
+       break;
+    }
+  }
+  if (is_user_in_set(rwfm_sub_id, obj_readers))
+  {
+    fflush(stdin);
+    /*- if print_labels -*/
+      printf("\nRead allowed from %d to %d\n", rwfm_obj_id, rwfm_sub_id);
+    /*- endif -*/
+    fflush(stdin);
+    return true;
+  }
+  fflush(stdin);
+  /*- if print_labels -*/
+    printf("\n***** ERROR : User is not in reader set *****\n");
+  /*- endif -*/
+  fflush(stdin);
+  return false;
+}
+
+bool check_write_rule (int rwfm_sub_id, int rwfm_obj_id)
+{
+  int obj_writers, obj_readers, sub_readers, sub_writers;
+  fflush(stdin);
+  /*- if print_labels -*/
+    printf("\nChecking for WRITE rule");
+  /*- endif -*/
+  fflush(stdin);
+  print_sub_readers_writers(rwfm_sub_id);
+  print_obj_readers_writers(rwfm_obj_id);
+  for(int i=0;i<rwfm_monitor.num_objects;i++)
+  {
+    if(rwfm_obj_id == rwfm_monitor.objects[i].obj_id_index)
+    {
+       obj_writers = rwfm_monitor.objects[i].writers;
+       obj_readers = rwfm_monitor.objects[i].readers;
+       break;
+    }
+  }
+  for(int i=0;i<rwfm_monitor.num_subjects;i++)
+  {
+    if(rwfm_sub_id == rwfm_monitor.subjects[i].sub_id_index)
+    {
+       sub_writers = rwfm_monitor.subjects[i].writers;
+       sub_readers = rwfm_monitor.subjects[i].readers;
+       break;
+    }
+  }
+  if(is_user_in_set(rwfm_sub_id,obj_writers) && is_subset_of(obj_readers,sub_readers) && is_superset_of(obj_writers,sub_writers))
+  {
+    fflush(stdin);
+    /*- if print_labels -*/
+      printf("\nWrite allowed from %d to %d\n\n", rwfm_sub_id, rwfm_obj_id);
+    /*- endif -*/
+    fflush(stdin);
+    return true;
+  }
+  fflush(stdin);
+  /*- if print_labels -*/
+  printf("\n***** ERROR : Write rule is violated *****\n\n");
+  /*- endif -*/
+  fflush(stdin);
+  return false;
+}
+
+void update_labels (int rwfm_sub_id, int rwfm_obj_id)
+{
+  int obj_writers, obj_readers, sub_readers, sub_writers;
+  int sub_index;
+  for(int i=0;i<rwfm_monitor.num_objects;i++)
+  {
+    if(rwfm_obj_id == rwfm_monitor.objects[i].obj_id_index)
+    {
+       obj_writers = rwfm_monitor.objects[i].writers;
+       obj_readers = rwfm_monitor.objects[i].readers;
+       break;
+    }
+  }
+  for(int i=0;i<rwfm_monitor.num_subjects;i++)
+  {
+    if(rwfm_sub_id == rwfm_monitor.subjects[i].sub_id_index)
+    {
+       sub_writers = rwfm_monitor.subjects[i].writers;
+       sub_readers = rwfm_monitor.subjects[i].readers;
+       sub_index = i;
+       break;
+    }
+  }
+
+  rwfm_monitor.subjects[sub_index].readers = set_intersection(sub_readers,obj_readers);  // Modify Reader Set
+  rwfm_monitor.subjects[sub_index].writers = set_union(sub_writers,obj_writers);        // Modify Writer Set
+  fflush(stdin);
+  /*- if print_labels -*/
+    printf("UPDATED LABELS");
+  /*- endif -*/
+  fflush(stdin);
+  print_sub_readers_writers(rwfm_sub_id);
+  print_obj_readers_writers(rwfm_obj_id);
+  printf("\n");
+}
+
+bool h9_can_i_read(int rwfm_obj_id)
+{
+  /*- if rwfm_set -*/
+    return check_read_rule(h8_parent_rwfm_sub_id, rwfm_obj_id);
+  /*- else -*/
+    return true;
+  /*- endif -*/
+}
+
+bool h9_can_i_write(int rwfm_obj_id)
+{
+  /*- if rwfm_set -*/
+    return check_write_rule(h8_parent_rwfm_sub_id, rwfm_obj_id);
+  /*- else -*/
+    return true;
+  /*- endif -*/
+}
+
+void h9_update_my_label(int rwfm_obj_id)
+{
+  /*- if rwfm_set -*/
+    update_labels(h8_parent_rwfm_sub_id, rwfm_obj_id);
+ /*- endif -*/
+}
+
+bool h12_can_i_read(int rwfm_obj_id)
+{
+  /*- if rwfm_set -*/
+    return check_read_rule(h11_parent_rwfm_sub_id, rwfm_obj_id);
+  /*- else -*/
+    return true;
+  /*- endif -*/
+}
+
+bool h12_can_i_write(int rwfm_obj_id)
+{
+  /*- if rwfm_set -*/
+    return check_write_rule(h11_parent_rwfm_sub_id, rwfm_obj_id);
+  /*- else -*/
+    return true;
+  /*- endif -*/
+}
+
+void h12_update_my_label(int rwfm_obj_id)
+{
+  /*- if rwfm_set -*/
+    update_labels(h11_parent_rwfm_sub_id, rwfm_obj_id);
+ /*- endif -*/
+}
+
+bool h15_can_i_read(int rwfm_obj_id)
+{
+  /*- if rwfm_set -*/
+    return check_read_rule(h14_parent_rwfm_sub_id, rwfm_obj_id);
+  /*- else -*/
+    return true;
+  /*- endif -*/
+}
+
+bool h15_can_i_write(int rwfm_obj_id)
+{
+  /*- if rwfm_set -*/
+    return check_write_rule(h14_parent_rwfm_sub_id, rwfm_obj_id);
+  /*- else -*/
+    return true;
+  /*- endif -*/
+}
+
+void h15_update_my_label(int rwfm_obj_id)
+{
+  /*- if rwfm_set -*/
+    update_labels(h14_parent_rwfm_sub_id, rwfm_obj_id);
+ /*- endif -*/
+}

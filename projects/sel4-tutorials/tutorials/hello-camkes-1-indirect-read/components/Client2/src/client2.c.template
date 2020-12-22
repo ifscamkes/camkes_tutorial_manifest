@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <camkes.h>
+
+int run(void)
+{
+    printf("Starting Client2\n");
+    printf("-------------------\n");
+
+    char *shello = "hello world";
+    h5_say_hello(shello);
+
+    printf("Client2 done.\n");
+    return 0;
+}
+

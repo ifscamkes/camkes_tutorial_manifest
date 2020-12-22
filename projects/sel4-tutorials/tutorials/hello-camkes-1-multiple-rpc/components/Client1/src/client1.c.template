@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <camkes.h>
+
+int run(void)
+{
+  printf("Starting the client1\n");
+  printf("-------------------\n");
+
+  printf("Component name %s\n", get_instance_name());
+
+  char *shello = "hello world";
+  char *shello1 = "hello";
+
+  h2_say_hello(shello);
+  printf("First time send done.\n");
+
+  h2_say_hello(shello1);
+  printf("Second time send done.\n");
+
+  printf("After the client1\n");
+  return 0;
+}

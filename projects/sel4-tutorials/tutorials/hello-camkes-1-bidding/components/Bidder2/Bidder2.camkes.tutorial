@@ -1,0 +1,12 @@
+import "../../interfaces/MakeBid.camkes";
+import "../../interfaces/DeclareResult.camkes";
+import "../../interfaces/RWFM_P.camkes";
+
+component Bidder2 {
+    control;
+    uses MakeBid h8;
+    provides DeclareResult h12;
+
+    uses RWFM_P h23;
+}
+

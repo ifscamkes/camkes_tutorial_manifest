@@ -1,0 +1,15 @@
+import "../../interfaces/MakeBid.camkes";
+import "../../interfaces/DeclareResult.camkes";
+import "../../interfaces/RWFM_P.camkes";
+
+component Auctioner {
+    provides MakeBid h3;
+    uses DeclareResult h5;
+    provides MakeBid h9;
+    uses DeclareResult h11;
+    provides MakeBid h15;
+    uses DeclareResult h17;
+
+    uses RWFM_P h29;
+}
+

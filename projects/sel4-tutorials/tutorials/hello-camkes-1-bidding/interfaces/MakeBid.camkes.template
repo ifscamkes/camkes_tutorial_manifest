@@ -1,0 +1,3 @@
+procedure MakeBid {
+    void make_bid(in int bid_amount, in string bidder);
+}

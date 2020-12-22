@@ -1,0 +1,3 @@
+procedure HelloSimple1 {
+    void say_hello(in string str);
+};

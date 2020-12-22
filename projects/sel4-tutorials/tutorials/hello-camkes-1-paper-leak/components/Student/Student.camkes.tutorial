@@ -1,0 +1,9 @@
+import "../../interfaces/TalktoStudent.camkes";
+import "../../interfaces/RWFM_P.camkes";
+
+component Student {
+    provides TalktoStudent h6;
+
+    uses RWFM_P h14;
+}
+

@@ -1,0 +1,5 @@
+procedure RWFM_P {
+    bool can_i_read(in int rwfm_obj_id);
+    bool can_i_write(in int rwfm_obj_id);
+    void update_my_label(in int rwfm_obj_id);
+};

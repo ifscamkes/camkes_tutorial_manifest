@@ -1,0 +1,10 @@
+import "../../interfaces/HelloSimple.camkes";
+import "../../interfaces/HelloSimple1.camkes";
+import "../../interfaces/RWFM_P.camkes";
+
+component Echo {
+    provides HelloSimple h3;
+    uses HelloSimple1 h5;
+    uses RWFM_P h11;
+}
+

@@ -1,0 +1,30 @@
+import <std_connector.camkes>;
+
+import "components/RWFM_MONITOR/RWFM_MONITOR.camkes";
+import "components/Bidder1/Bidder1.camkes";
+import "components/Bidder2/Bidder2.camkes";
+import "components/Bidder3/Bidder3.camkes";
+import "components/Auctioner/Auctioner.camkes";
+
+assembly {
+    composition {
+        component RWFM_MONITOR rwfm_monitor;
+        component Bidder1 bidder1;
+        component Bidder2 bidder2;
+	component Bidder3 bidder3;
+        component Auctioner auctioner;
+
+	connection seL4RPC h1(from bidder1.h2, to auctioner.h3);
+	connection seL4RPC h4(from auctioner.h5, to bidder1.h6);
+        connection seL4RPC h7(from bidder2.h8, to auctioner.h9);
+	connection seL4RPC h10(from auctioner.h11, to bidder2.h12);
+	connection seL4RPC h13(from bidder3.h14, to auctioner.h15);
+	connection seL4RPC h16(from auctioner.h17, to bidder3.h18);
+
+	connection seL4RPCCall h19(from bidder1.h20, to rwfm_monitor.h21);
+        connection seL4RPCCall h22(from bidder2.h23, to rwfm_monitor.h24);
+	connection seL4RPCCall h25(from bidder3.h26, to rwfm_monitor.h27);
+        connection seL4RPCCall h28(from auctioner.h29, to rwfm_monitor.h30); 
+    }
+}
+
