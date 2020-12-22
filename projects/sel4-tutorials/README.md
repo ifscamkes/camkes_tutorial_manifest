@@ -1,3 +1,9 @@
+We are thankful to Data61 and seL4 developer's community for making CAmkES 3.5.0 available for free public use and development purposes.
+
+Information Flow Secure CAmkES (IFS-CAmkES) is our initial attempt in making CAmkES based systems information flow secure. We have released IFS-CAmkES 1.0 in our endeavor to help the community and further colloboration to make it more robust.
+
+We would be grateful for any suggestions towards improving IFS-CAmkES.
+
 # Installation and Usage Instructions
 
 Set up your machine to to build and run seL4 and CAmkES:
