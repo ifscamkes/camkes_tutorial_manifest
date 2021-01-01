@@ -23,13 +23,14 @@ camkes_tutorials_manifest/projects/sel4-tutorials/tutorials
    a. mkdir <project_name>
    
    b. cd <project_name>
+   
    c. ../init --plat pc99 --tut hello-camkes-1 [--rwfm_set] [--print_labels]
    
         I.  If you want to use rwfm then use --rwfm_set flag
       
         II. If you want to print the rwfm labels use --print_labels flag.
       
-          Both these flags work only in information flow secure CAmkES. 
+        Both these flags work only in information flow secure CAmkES. 
           
    d. ninja
    
