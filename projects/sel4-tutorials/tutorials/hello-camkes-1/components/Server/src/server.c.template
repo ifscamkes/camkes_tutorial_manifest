@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <camkes.h>
+
+int h3_provide_directions(const char * device, const char *source, const char *destination) {
+  printf("Navigation server got the navigation request from %s for : %s to %s \n", device, source, destination);
+  printf("Navigation server is trying to provide the details to the intruder\n");
+  h5_provide_details(device, source, destination);
+  // char *directions = *source + "to Z to" + *destination;
+  int directions = 1; 
+  return directions;
+}
+

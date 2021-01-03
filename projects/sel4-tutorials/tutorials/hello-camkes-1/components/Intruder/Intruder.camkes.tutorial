@@ -1,0 +1,9 @@
+import "../../interfaces/ProvideDetails.camkes";
+import "../../interfaces/RWFM_P.camkes";
+
+component Intruder {
+    provides Provide_Details h6;
+
+    uses RWFM_P h14;
+}
+

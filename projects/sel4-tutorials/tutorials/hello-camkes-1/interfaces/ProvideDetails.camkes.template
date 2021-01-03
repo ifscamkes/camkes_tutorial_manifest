@@ -1,0 +1,4 @@
+procedure Provide_Details {
+    void provide_details(in string device, in string source, in string destination);
+};
+

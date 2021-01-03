@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <camkes.h>
+
+int run(void) {
+  printf("GPS device requests directions from navigation server\n");
+  char *source = "A";
+  char *destination = "B";
+  //char *directions = h2_provide_directions(get_instance_name(), source, destination);
+  //printf("Directions %s \n", directions);
+
+  int directions = h2_provide_directions(get_instance_name(), source, destination);
+  printf("Directions %d \n", directions);
+
+  return 0;
+}

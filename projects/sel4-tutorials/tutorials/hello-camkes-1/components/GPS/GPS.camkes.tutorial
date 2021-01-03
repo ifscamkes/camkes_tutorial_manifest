@@ -1,0 +1,10 @@
+import "../../interfaces/ProvideDirections.camkes";
+import "../../interfaces/RWFM_P.camkes";
+
+component GPS {
+    control;
+    uses Provide_Directions h2;
+    
+    uses RWFM_P h8;
+}
+

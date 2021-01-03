@@ -23,13 +23,14 @@ camkes_tutorials_manifest/projects/sel4-tutorials/tutorials
    a. mkdir <project_name>
    
    b. cd <project_name>
+
    c. ../init --plat pc99 --tut hello-camkes-1 [--rwfm_set] [--print_labels]
    
         I.  If you want to use rwfm then use --rwfm_set flag
       
         II. If you want to print the rwfm labels use --print_labels flag.
       
-          Both these flags work only in information flow secure CAmkES. 
+          Both these flags work only in information flow secure CAmkES.
           
    d. ninja
    
@@ -59,3 +60,4 @@ Here is a brief overview of the examples:
 8. hello-camkes-1-multilple_rpc: Demonstrates multiple RPC from Client 1 to Echo to Client 2.
 9. hello-camkes-1-timing-rpc: To calculate the number of RPC in 100 seconds with RWFM. (Use camkes_tutorials_manifest/timing.sh to run it, after changing the example name to hello-camkes-1)
 10. hello-camkes-1-timing-rpc-call: To calculate the number of RPC Calls in 100 seconds with RWFM. (Use camkes_tutorials_manifest/timing.sh to run it after changing the example name to hello-camkes-1)
+11. hello-camkes-1-gps-tracking: Demonstrates RWFM helps in preventing navigation server from leaking the location details to intruder.

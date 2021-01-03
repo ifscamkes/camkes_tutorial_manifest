@@ -1,0 +1,22 @@
+import <std_connector.camkes>;
+
+import "components/RWFM_MONITOR/RWFM_MONITOR.camkes";
+import "components/GPS/GPS.camkes";
+import "components/Server/Server.camkes";
+import "components/Intruder/Intruder.camkes";
+
+assembly {
+    composition {
+        component RWFM_MONITOR rwfm_monitor;
+        component GPS car1;
+	    component Server ns;
+	    component Intruder intruder;
+
+        connection seL4RPCCall h1(from car1.h2, to ns.h3);
+        connection seL4RPC h4(from ns.h5, to intruder.h6);
+
+        connection seL4RPCCall h7(from car1.h8, to rwfm_monitor.h9);
+        connection seL4RPCCall h10(from ns.h11, to rwfm_monitor.h12);
+        connection seL4RPCCall h13(from intruder.h14, to rwfm_monitor.h15);
+    }
+}
