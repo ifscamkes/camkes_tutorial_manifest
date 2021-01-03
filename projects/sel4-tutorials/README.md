@@ -16,7 +16,7 @@ Browse and download the required git repository available at: https://github.com
 In the camkes_tutorial_manifest repository, all the Information Flow Secure CAmkES examples are available at: 
 camkes_tutorials_manifest/projects/sel4-tutorials/tutorials
 
-### To run a project:
+## To run a project:
 1. Change the example name to hello-camkes-1
 2. In camkes_tutorials_manifest directory, run the following commands:
 
