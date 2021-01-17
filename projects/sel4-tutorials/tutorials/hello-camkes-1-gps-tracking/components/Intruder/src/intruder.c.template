@@ -2,5 +2,5 @@
 #include <camkes.h>
 
 void h6_provide_details(const char * device, const char *source, const char *destination) {
-  printf("Intruder got the details from navigation server: %s is travelling from %s to %s.\n", device, source, destination);
+  printf("Intruder got the details from navigation server: %s is travelling from %s to %s\n", device, source, destination);
 }

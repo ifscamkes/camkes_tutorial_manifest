@@ -1,4 +1,3 @@
 procedure Provide_Directions {
-    int provide_directions(in string device, in string source, in string destination);
+    int provide_directions(in string device, in string source, in string destination, out string directions);
 };
-
