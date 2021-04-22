@@ -35,12 +35,12 @@ Ids for components and interfaces can be found in <project_name>/rwfm_log file a
 Here is a brief overview of the examples: 
 1. hello-camkes-1-indirect-write: Demonstrates that RWFM helps in stopping indirect write from Client 1 to Client 2 via Helper.
 2. hello-camkes-1-indirect-read: Demonstrates that RWFM helps in stopping indirect read by Client 1 from Client 2 via Helper. 
-3. hello-camkes-1-bidding: Demonstrates that RWFM helps in safe bidding i.e. the bidders do not get to know each others bids and result apriori.
-4. hello-camkes-1-paper-leak: Demonstrates that RWFM helps in preventing the paper leak from TA to students.
-5. hello-camkes-1-rpc-call: Demonstrates RPC Call from Client 1 to Echo to Client 2.
-6. hello-camkes-1-rpc: Demonstrates RPC from Client 1 to Echo to Client 2. 
-7. hello-camkes-1-multiple-rpc-calls: Demonstrates multiple RPC Calls from Client 1 to Echo to Client 2.
-8. hello-camkes-1-multilple_rpc: Demonstrates multiple RPC from Client 1 to Echo to Client 2.
-9. hello-camkes-1-timing-rpc: To calculate the number of RPC in 100 seconds. (Use ifs-camkes/timing.sh to run it, after changing the example name to hello-camkes-1)
-10. hello-camkes-1-timing-rpc-call: To calculate the number of RPC Calls in 100 seconds. (Use ifs-camkes/timing.sh to run it, after changing the example name to hello-camkes-1)
+3. hello-camkes-1-rpc-call: Demonstrates RPC Call from Client 1 to Echo to Client 2.
+4. hello-camkes-1-rpc: Demonstrates RPC from Client 1 to Echo to Client 2. 
+5. hello-camkes-1-multiple-rpc-calls: Demonstrates multiple RPC Calls from Client 1 to Echo to Client 2.
+6. hello-camkes-1-multilple_rpc: Demonstrates multiple RPC from Client 1 to Echo to Client 2.
+7. hello-camkes-1-timing-rpc-call: To calculate the number of RPC Calls in 100 seconds. (Use ifs-camkes/timing.sh to run it, after changing the example name to hello-camkes-1)
+8. hello-camkes-1-timing-rpc: To calculate the number of RPC in 100 seconds. (Use ifs-camkes/timing.sh to run it, after changing the example name to hello-camkes-1)
+9. hello-camkes-1-bidding: Demonstrates that RWFM helps in safe bidding i.e. the bidders do not get to know each others bids and result apriori.
+10. hello-camkes-1-paper-leak: Demonstrates that RWFM helps in preventing the paper leak from TA to students.
 11. hello-camkes-1-gps-tracking: Demonstrates that RWFM helps in preventing navigation server from leaking the location details to intruder.
