@@ -6,7 +6,7 @@ We would be grateful for any suggestions towards improving IFS-CAmkES.
 
 # Installation and Usage Instructions
 
-Set up your machine to to build and run seL4 and CAmkES:
+Set up your machine to build and run seL4 and CAmkES:
 https://docs.sel4.systems/projects/buildsystem/host-dependencies.html
 
 Browse and download the required git repository available at: https://github.com/ifscamkes
