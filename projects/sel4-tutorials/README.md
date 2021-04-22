@@ -3,13 +3,21 @@ All IFS-CAmkES examples are available at: ifs-camkes/projects/sel4-tutorials/tut
 ## To run a project:
 1. Change the example folder name to hello-camkes-1
 2. In ifs-camkes directory, run the following commands:
+
    a. mkdir <project_name>
+   
    b. cd <project_name>
+   
    c. ../init --plat pc99 --tut hello-camkes-1 [--rwfm_set] [--print_labels]
+   
         I.  If you want to use rwfm then use --rwfm_set flag
+        
         II. If you want to print the rwfm labels use --print_labels flag.
+        
         Both these flags work only in IFS-CAmkES. 
+   
    d. ninja
+   
    e. ./simulate
 
 Ids for components and interfaces can be found in <project_name>/rwfm_log file as follows: 
