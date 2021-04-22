@@ -42,5 +42,5 @@ Here is a brief overview of the examples:
 7. hello-camkes-1-multiple-rpc-calls: Demonstrates multiple RPC Calls from Client 1 to Echo to Client 2.
 8. hello-camkes-1-multilple_rpc: Demonstrates multiple RPC from Client 1 to Echo to Client 2.
 9. hello-camkes-1-timing-rpc: To calculate the number of RPC in 100 seconds. (Use ifs-camkes/timing.sh to run it, after changing the example name to hello-camkes-1)
-10. hello-camkes-1-timing-rpc-call: To calculate the number of RPC Calls in 100 seconds. (Use ifs-camkes/timing.sh to run it after changing the example name to hello-camkes-1)
+10. hello-camkes-1-timing-rpc-call: To calculate the number of RPC Calls in 100 seconds. (Use ifs-camkes/timing.sh to run it, after changing the example name to hello-camkes-1)
 11. hello-camkes-1-gps-tracking: Demonstrates that RWFM helps in preventing navigation server from leaking the location details to intruder.
