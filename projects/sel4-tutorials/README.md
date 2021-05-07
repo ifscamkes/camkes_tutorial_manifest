@@ -2,6 +2,7 @@ All IFS-CAmkES examples are available at: ifs-camkes/projects/sel4-tutorials/tut
 
 ## To run a project:
 1. Change the example folder name to hello-camkes-1
+
 2. In ifs-camkes directory, run the following commands:
 
    a. mkdir <project_name>
@@ -38,7 +39,7 @@ Here is a brief overview of the examples:
 3. hello-camkes-1-rpc-call: Demonstrates RPC Call from Client 1 to Echo to Client 2.
 4. hello-camkes-1-rpc: Demonstrates RPC from Client 1 to Echo to Client 2. 
 5. hello-camkes-1-multiple-rpc-calls: Demonstrates multiple RPC Calls from Client 1 to Echo to Client 2.
-6. hello-camkes-1-multilple_rpc: Demonstrates multiple RPC from Client 1 to Echo to Client 2.
+6. hello-camkes-1-multilple-rpc: Demonstrates multiple RPC from Client 1 to Echo to Client 2.
 7. hello-camkes-1-timing-rpc-call: To calculate the number of RPC Calls in 100 seconds. (Use ifs-camkes/timing.sh to run it, after changing the example name to hello-camkes-1)
 8. hello-camkes-1-timing-rpc: To calculate the number of RPC in 100 seconds. (Use ifs-camkes/timing.sh to run it, after changing the example name to hello-camkes-1)
 9. hello-camkes-1-bidding: Demonstrates that RWFM helps in safe bidding i.e. the bidders do not get to know each others bids and result apriori.
